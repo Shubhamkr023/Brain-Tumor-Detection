@@ -77,7 +77,11 @@ class CBAM(Layer):
 app = Flask(__name__)
 
 MODEL_PATH = os.path.join("models", "model.h5")
-model = load_model(MODEL_PATH, custom_objects={"CBAM": CBAM})
+model = load_model(
+    MODEL_PATH,
+    custom_objects={"CBAM": CBAM},
+    compile=False
+)
 
 class_labels = ['notumor', 'meningioma', 'pituitary', 'glioma']
 
