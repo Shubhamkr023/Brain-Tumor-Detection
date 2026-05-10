@@ -29,16 +29,29 @@ class CBAM(Layer):
         self.ratio = ratio
 
     def build(self, input_shape):
+
+        if isinstance(input_shape, list):
+            input_shape = input_shape[0]
+
         if self.filters is None:
-            self.filters = int(input_shape[-1])
+
+            if isinstance(input_shape[-1], tuple):
+                self.filters = int(input_shape[-1][-1])
+            else:
+                self.filters = int(input_shape[-1])
 
         self.avg_pool = GlobalAveragePooling2D()
         self.max_pool = GlobalMaxPooling2D()
 
-        self.fc1 = Dense(self.filters // self.ratio, activation='relu')
+        self.fc1 = Dense(max(self.filters // self.ratio, 1), activation='relu')
         self.fc2 = Dense(self.filters)
 
-        self.conv_spatial = Conv2D(1, kernel_size=7, padding='same', activation='sigmoid')
+        self.conv_spatial = Conv2D(
+        1,
+        kernel_size=7,
+        padding='same',
+        activation='sigmoid'
+    )
 
         super(CBAM, self).build(input_shape)
 
