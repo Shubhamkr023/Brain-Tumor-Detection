@@ -56,6 +56,10 @@ class CBAM(Layer):
         super(CBAM, self).build(input_shape)
 
     def call(self, inputs):
+
+        if isinstance(inputs, list):
+            inputs = inputs[0]
+
         avg = self.avg_pool(inputs)
         max_ = self.max_pool(inputs)
 
