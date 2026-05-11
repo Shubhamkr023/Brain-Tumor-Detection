@@ -158,35 +158,36 @@ def overlay_heatmap(original_path, heatmap, output_path):
 # -----------------------------------------------------
 # GEMINI AI EXPLANATION (NEW PART)
 # -----------------------------------------------------
+# def generate_ai_explanation(image_path, heatmap_path, predicted_class):
+
+#     prompt = f"""
+#     This is a brain MRI image along with a heatmap highlighting the region
+#     influencing a deep learning tumor classification model.
+
+#     The model predicted: {predicted_class}.
+
+#     Based on the highlighted region and MRI characteristics,
+#     provide a professional medical-style explanation describing
+#     why this region may correspond to this tumor type.
+#     Keep it concise and suitable for doctors.
+#     """
+
+#     with open(image_path, "rb") as f:
+#         img_bytes = f.read()
+
+#     with open(heatmap_path, "rb") as f:
+#         heat_bytes = f.read()
+
+#     response = gemini_model.generate_content([
+#         prompt,
+#         {"mime_type": "image/png", "data": img_bytes},
+#         {"mime_type": "image/png", "data": heat_bytes}
+#     ])
+
+#     return response.text
+
 def generate_ai_explanation(image_path, heatmap_path, predicted_class):
-
-    prompt = f"""
-    This is a brain MRI image along with a heatmap highlighting the region
-    influencing a deep learning tumor classification model.
-
-    The model predicted: {predicted_class}.
-
-    Based on the highlighted region and MRI characteristics,
-    provide a professional medical-style explanation describing
-    why this region may correspond to this tumor type.
-    Keep it concise and suitable for doctors.
-    """
-
-    with open(image_path, "rb") as f:
-        img_bytes = f.read()
-
-    with open(heatmap_path, "rb") as f:
-        heat_bytes = f.read()
-
-    response = gemini_model.generate_content([
-        prompt,
-        {"mime_type": "image/png", "data": img_bytes},
-        {"mime_type": "image/png", "data": heat_bytes}
-    ])
-
-    return response.text
-
-
+    return "AI explanation temporarily disabled."
 # -----------------------------------------------------
 # Prediction + Gemini Explainable AI
 # -----------------------------------------------------
